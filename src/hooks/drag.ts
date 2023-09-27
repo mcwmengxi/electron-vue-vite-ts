@@ -1,4 +1,4 @@
-import { ipcRenderer } from "electron";
+// import { ipcRenderer } from "electron";
 
 function useDrag(){
   let animationId: number;
@@ -28,10 +28,10 @@ function useDrag(){
   }
   const moveWindow = () => {
     // 进程通信
-    ipcRenderer.send('msg-trigger', {
-      type: 'windowMoving',
-      data: { mouseX, mouseY, width: clientWidth, height: clientHeight },
-    })
+    // ipcRenderer.send('msg-trigger', {
+    //   type: 'windowMoving',
+    //   data: { mouseX, mouseY, width: clientWidth, height: clientHeight },
+    // })
 
     if (draggable) animationId = requestAnimationFrame(moveWindow);
   }

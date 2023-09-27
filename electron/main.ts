@@ -1,5 +1,6 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, session } from 'electron'
 import path from 'node:path'
+
 
 // The built directory structure
 //
@@ -31,6 +32,10 @@ function createWindow() {
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
   })
+
+  // 打开调试模式
+  session.defaultSession.loadExtension(path.resolve(__dirname, '../devtools/6.5.0_0'))
+  win.webContents.openDevTools()
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
